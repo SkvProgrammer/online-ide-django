@@ -5,6 +5,9 @@ import sys
 def greetings(request):
     res = render(request,'codestar/home.html')
     return res
+def testing(request):
+    res = render(request,'codestar/newhome.html')
+    return res
 
 def runcode(request):
     if request.method == 'POST':
