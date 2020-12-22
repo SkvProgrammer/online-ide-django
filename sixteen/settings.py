@@ -16,6 +16,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -26,7 +28,7 @@ SECRET_KEY = '+9fcl8#n4z!!^!0*6n3f*h&2c28()h*)9qn5v-c@05le-z79x8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','skvprogrammer.pythonanywhere.com']
 
 
 # Application definition
@@ -52,6 +54,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'sixteen.urls'
+TEMPLATE_LOADERS = (
+   'django.template.loaders.filesystem.Loader',
+   'django.template.loaders.app_directories.Loader',
+   'django.template.loaders.eggs.Loader',
+)
+
+
 
 TEMPLATES = [
     {
@@ -121,5 +130,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-	STATIC_DIR,
+    os.path.join(BASE_DIR, 'static'),
 ]

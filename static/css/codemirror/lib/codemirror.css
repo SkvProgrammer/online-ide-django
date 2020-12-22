@@ -5,7 +5,8 @@
   width:100vw;
   font-size:20px;
   overflow:hidden;
-  border-radius:5px;
+   border:1px solid #737373!important;
+  border-radius:1px!important;
 }/* BASICS */
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
@@ -46,7 +47,7 @@
 .CodeMirror-linenumbers {}
 .CodeMirror-linenumber {
   padding: 0 3px 0 5px;
-  min-width: 20px;
+  min-width: 10px;
   text-align: right;
   color: #999;
   white-space: nowrap;

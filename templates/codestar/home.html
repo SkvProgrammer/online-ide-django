@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="../codemirror/theme/night.css" >
         <script src="{% static 'css/codemirror/lib/codemirror.js' %}"></script>
         <script src="{% static 'css/codemirror/mode/python/python.js' %}"></script>
+      
         <script src="../codemirror/mode/clike/clike.js"></script>
         <script src="../codemirror/mode/javascript/javascript.js"></script>
         <meta name="Description" content="Online Python IDE"/> 
@@ -45,7 +46,7 @@
          <!--<script async src="https://cse.google.com/cse.js?cx=016236012273495808262:cabujlbzuwi"></script>-->
 
  
-    <script type="application/javascript" src="https://sdki.truepush.com/sdk/v2.0.2/app.js" async></script>
+    <!--<script type="application/javascript" src="https://sdki.truepush.com/sdk/v2.0.2/app.js" async></script>
     <script>
     var truepush = window.truepush || [];
             
@@ -57,43 +58,72 @@
         })
     })
     </script>
-
+-->
 </head>
 <body>
+  
   <style>
     textarea{
       box-shadow:none!important;
       outline:none!important;
-      border:1px solid lightgrey!important;
+      border:1px solid #737373!important;
+      border-radius:1px!important;
+      resize:none!important;
     }
+    a{
+      color:white;
+      text-decoration:none;
+    }
+    a:hover{
+      color:white;
+      text-decoration:none;
+    }
+   .form-group{
+    margin-bottom:0px!important;
+   }
+   .newcolorbtn{
+  background-color:#04D2C8;
+  color:white;
+  border:1px solid #04D2C8!important;
+  box-shadow:none;
+  outline: none;
+}
+.newcolorbtn:hover{
+  background-color:transparent;
+  color:#04D2C8!important;
+  border:1px solid #04D2C8!important;
+}
   </style>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Online Python IDE</a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="
+    background-image: linear-gradient(192deg,#4537d1,#a54eee);font-family: 'Big Shoulders Stencil Text', cursive!important;color:white;">
+  <a class="navbar-brand" href="#" style="font-family: 'Big Shoulders Stencil Text', cursive!important;">BestPythonTutorials<x style="color:lime;">.com</x><sup><b>IDE</b></sup></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
+     
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Tutorials
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+          <a class="dropdown-item" href="#">Python</a>
+          <a class="dropdown-item" href="#">Django</a>
+          <a class="dropdown-item" href="#">Flask</a>
+          <a class="dropdown-item" href="#">NumPy</a>
+          <a class="dropdown-item" href="#">Pandas</a>
+          <a class="dropdown-item" href="#">Matplotlib</a>
+               </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="#"><i class="fa fa-adjust"></i> Change Mode</a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="#">Python IDE</a>
       </li>
     </ul>
     <!--<form class="form-inline my-2 my-lg-0">
@@ -104,52 +134,43 @@
 </nav>
 <form class="pl-5 pr-5 pb-5 pt-1" action="/home/run" method="post">
    {% csrf_token %}
-  <div class="form-group">
+  <div class="form-group mb-0">
     
   <div class="form-group row">
     <label for="editor"></label>
     <textarea class="form-control col-lg-12" id="editor" rows="2" style="height:35vh;width:100%!important;" name="code_area" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{code}}</textarea>
-  </div>
-   <div class="form-group row">
-     <label for="exampleFormControlTextarea1"></label>
-    <!--<p>Note:Note:If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.</p>-->
-    <textarea class="form-control col-lg-4 col-sm-12" id="exampleFormControlTextarea1" name="input_area" rows="1" style="" placeholder="Input Goes Here...">{{input}}</textarea>
-    <label for="exampleFormControlTextarea2"></label>
-    <textarea class="form-control col-lg-8 col-sm-12" id="exampleFormControlTextarea2" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
-    
-  </div>
- <div class="form-group">
-    <button class="btn btn-success" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;"> <i class="fa fa-chevron-right"> </i> Run Code</button>
-
-<a href="#/" target="_blank" id="testLink">
-    Download 
+ <a href="#output"><button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="submit"> <i class="fa fa-chevron-right"> </i>  Run</button>
 </a>
+    <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-adjust"> </i></button>
+     <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-upload"> </i></button>
+     <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-download"> </i></button>
+<button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-copy"> </i></button>
+<button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-share"> </i></button>    
     
+  </div>
+   <div class="form-group row mt-0 pt-0">
+     <label for="input"></label>
+    <!--<p>Note:Note:If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.</p>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <textarea class="form-control col-lg-4 col-sm-12" id="input" name="input_area" rows="1" placeholder="Input Goes Here...">{{input}}</textarea>
+
+    <label for="output"></label>
+    <textarea class="form-control col-lg-8 col-sm-12" id="output" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
+    
+  </div>
+ <div class="form-group mt-1 ml-0 text-center">
+   
   </div>
 </form>
   <script>
-                var editor = CodeMirror.fromTextArea(document.getElementById('editor'),{
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'),{
       mode:"python",
       lineNumbers:true
     });
 
+    
   </script>  
-<script>
-  (function() {
-    /*! https://github.com/koffsyrup/FileSaver.js */
-    var saveAs=saveAs ||(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob&&navigator.msSaveOrOpenBlob.bind(navigator))||(function(view){"use strict";if(typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var doc=view.document,get_URL=function(){return view.URL||view.webkitURL||view},save_link=doc.createElementNS("http://www.w3.org/1999/xhtml","a"),can_use_save_link=!view.externalHost&&"download"in save_link,click=function(node){var event=doc.createEvent("MouseEvents");event.initMouseEvent("click",true,false,view,0,0,0,0,0,false,false,false,false,0,null);node.dispatchEvent(event)},webkit_req_fs=view.webkitRequestFileSystem,req_fs=view.requestFileSystem||webkit_req_fs||view.mozRequestFileSystem,throw_outside=function(ex){(view.setImmediate||view.setTimeout)(function(){throw ex},0)},force_saveable_type="application/octet-stream",fs_min_size=0,deletion_queue=[],process_deletion_queue=function(){var i=deletion_queue.length;while(i--){var file=deletion_queue[i];if(typeof file==="string"){get_URL().revokeObjectURL(file)}else{file.remove()}}deletion_queue.length=0;},dispatch=function(filesaver,event_types,event){event_types=[].concat(event_types);var i=event_types.length;while(i--){var listener=filesaver["on"+event_types[i]];if(typeof listener==="function"){try{listener.call(filesaver,event||filesaver)}catch(ex){throw_outside(ex)}}}},FileSaver=function(blob,name){var filesaver=this,type=blob.type,blob_changed=false,object_url,target_view,get_object_url=function(){var object_url=get_URL().createObjectURL(blob);deletion_queue.push(object_url);return object_url},dispatch_all=function(){dispatch(filesaver,"writestart progress write writeend".split(" "))},fs_error=function(){if(blob_changed||!object_url){object_url=get_object_url(blob)}if(target_view){target_view.location.href=object_url}else{window.open(object_url,"_blank")}filesaver.readyState=filesaver.DONE;dispatch_all()},abortable=function(func){return function(){if(filesaver.readyState!==filesaver.DONE){return func.apply(this,arguments)}}},create_if_not_found={create:true,exclusive:false},slice;filesaver.readyState=filesaver.INIT;if(!name){name="download"}if(can_use_save_link){object_url=get_object_url(blob);save_link.href=object_url;save_link.download=name;click(save_link);filesaver.readyState=filesaver.DONE;dispatch_all();return}if(view.chrome&&type&&type!==force_saveable_type){slice=blob.slice||blob.webkitSlice;blob=slice.call(blob,0,blob.size,force_saveable_type);blob_changed=true}if(webkit_req_fs&&name!=="download"){name+=".download"}if(type===force_saveable_type||webkit_req_fs){target_view=view}if(!req_fs){fs_error();return}fs_min_size+=blob.size;req_fs(view.TEMPORARY,fs_min_size,abortable(function(fs){fs.root.getDirectory("saved",create_if_not_found,abortable(function(dir){var save=function(){dir.getFile(name,create_if_not_found,abortable(function(file){file.createWriter(abortable(function(writer){writer.onwriteend=function(event){target_view.location.href=file.toURL();deletion_queue.push(file);filesaver.readyState=filesaver.DONE;dispatch(filesaver,"writeend",event)};writer.onerror=function(){var error=writer.error;if(error.code!==error.ABORT_ERR){fs_error()}};"writestart progress write abort".split(" ").forEach(function(event){writer["on"+event]=filesaver["on"+event]});writer.write(blob);filesaver.abort=function(){writer.abort();filesaver.readyState=filesaver.DONE};filesaver.readyState=filesaver.WRITING}),fs_error)}),fs_error)};dir.getFile(name,{create:false},abortable(function(file){file.remove();save()}),abortable(function(ex){if(ex.code===ex.NOT_FOUND_ERR){save()}else{fs_error()}}))}),fs_error)}),fs_error)},FS_proto=FileSaver.prototype,saveAs=function(blob,name){return new FileSaver(blob,name)};FS_proto.abort=function(){var filesaver=this;filesaver.readyState=filesaver.DONE;dispatch(filesaver,"abort")};FS_proto.readyState=FS_proto.INIT=0;FS_proto.WRITING=1;FS_proto.DONE=2;FS_proto.error=FS_proto.onwritestart=FS_proto.onprogress=FS_proto.onwrite=FS_proto.onabort=FS_proto.onerror=FS_proto.onwriteend=null;view.addEventListener("unload",process_deletion_queue,false);saveAs.unload=function(){process_deletion_queue();view.removeEventListener("unload",process_deletion_queue,false)};return saveAs}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content));if(typeof module!=="undefined"&&module!==null){module.exports=saveAs}else if((typeof define!=="undefined"&&define!==null)&&(define.amd!=null)){define([],function(){return saveAs})}String.prototype.endsWithAny=function(){var strArray=Array.prototype.slice.call(arguments),$this=this.toLowerCase().toString();for(var i=0;i<strArray.length;i+=1){if($this.indexOf(strArray[i],$this.length-strArray[i].length)!==-1){return true}}return false};var saveTextAs=saveTextAs||(function(textContent,fileName,charset){fileName=fileName||'download.py';charset=charset||'utf-8';textContent=(textContent||'').replace(/\r?\n/g,"\r\n");if(saveAs&&Blob){var blob=new Blob([textContent],{type:"text/plain;charset="+charset});saveAs(blob,fileName);return true}else{var saveTxtWindow=window.frames.saveTxtWindow;if(!saveTxtWindow){saveTxtWindow=document.createElement('iframe');saveTxtWindow.id='saveTxtWindow';saveTxtWindow.style.display='none';document.body.insertBefore(saveTxtWindow,null);saveTxtWindow=window.frames.saveTxtWindow;if(!saveTxtWindow){saveTxtWindow=window.open('','_temp','width=100,height=100');if(!saveTxtWindow){window.alert('Sorry, download file could not be created.');return false}}}var doc=saveTxtWindow.document;doc.open('text/html','replace');doc.charset=charset;if(fileName.endsWithAny('.htm','.html')){doc.close();doc.body.innerHTML='\r\n'+textContent+'\r\n'}else{if(!fileName.endsWithAny('.py')){fileName+='.py'}doc.write(textContent);doc.close()}var retValue=doc.execCommand('SaveAs',null,fileName);saveTxtWindow.close();return retValue}});
 
-    /*----*/
-
-    var area = document.getElementById('editor');
-    var link = document.getElementById('testLink');
-
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        saveTextAs(area.value, 'test.py');
-    }, false);
-})();
-</script>
 
 </body>
 </html>
