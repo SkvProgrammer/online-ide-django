@@ -82,17 +82,17 @@
     margin-bottom:0px!important;
    }
    .newcolorbtn{
-  background-color:#04D2C8;
-  color:white;
-  border:1px solid #04D2C8!important;
+  background-color:transparent;
+  color:black;
+  border:none!important;
   box-shadow:none;
   outline: none;
 }
-.newcolorbtn:hover{
+/*.newcolorbtn:hover{
   background-color:transparent;
   color:#04D2C8!important;
   border:1px solid #04D2C8!important;
-}
+}*/
   </style>
 <nav class="navbar navbar-expand-lg navbar-dark" style="
     background-image: linear-gradient(192deg,#4537d1,#a54eee);font-family: 'Big Shoulders Stencil Text', cursive!important;color:white;">
@@ -135,11 +135,11 @@
 <form class="pl-5 pr-5 pb-5 pt-1" action="/home/run" method="post">
    {% csrf_token %}
   <div class="form-group mb-0">
-    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <div class="form-group row">
     <label for="editor"></label>
     <textarea class="form-control col-lg-12" id="editor" rows="2" style="height:35vh;width:100%!important;" name="code_area" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{code}}</textarea>
- <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="submit" id="runbtn"> <i class="fa fa-chevron-right"> </i>  Run</button>
+ <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="submit" id="runbtn"><i class="fa fa-chevron-right"> </i>  Run</a></button>
 
     <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-adjust"> </i></button>
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-upload"> </i></button>
