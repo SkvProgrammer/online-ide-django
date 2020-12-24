@@ -188,7 +188,11 @@
 .dark-mode button {
   color: white;
 }
-
+#runbtn{
+  background-color:green!important;
+  color:white!important;
+  border-radius:10px!important;
+}
 .dark-mode{
   background-color: rgb(40, 42, 54);
   color: white;
@@ -201,7 +205,7 @@
 }
 
 form{
-  border:1px solid black;
+  border:1px solid black!important;
 }
 /*.newcolorbtn:hover{
   background-color:transparent;
@@ -258,14 +262,14 @@ form{
 <div class="form-group row" style="border:1px solid #737373;border-top:none;">
   <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"><img src="{% static 'images/file-code.svg' %}" style="height:15px;width:18px;">main.py</button>
   <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"><img src="{% static 'images/python.svg' %}" style="height:18px;width:18px;">Python 3</button>
- <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="submit" id="runbtn"><i class="fa fa-chevron-right"> </i>  Run</button>
+ <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:50px!important;" type="submit" id="runbtn"><i class="fa fa-chevron-right"> </i>  Run</button>
 
    
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-upload"> </i></button>
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-download"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-copy"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-share"> </i></button>    
-    <p>Theme: <select class="p-2 mt-3" style="line-height:1.5;" onchange="selectTheme()" id=select>
+    <p>Theme: <select class="mt-3 mb-0" style="line-height:1.5;" onchange="selectTheme()" id=select>
     <option selected>default</option>
     <option>3024-day</option>
     <option>3024-night</option>
