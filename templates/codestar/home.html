@@ -61,15 +61,40 @@
 -->
 </head>
 <body>
-  
+  <div class="loader"></div>
+
   <style>
+
+    .loader {
+
+    position: fixed;
+
+    left: 0px;
+
+    top: 0px;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 9999;
+
+    background: url('https://bestpythontutorials.com/loader.gif') 50% 50% no-repeat white;
+
+}
+    /*.row{
+      display:block!important;
+    }*/
+    label,h1,h2,h3,h4,h5,h6{
+       font-family: 'Big Shoulders Stencil Text', cursive!important;
+    }
     textarea{
       box-shadow:none!important;
       outline:none!important;
       border:1px solid #737373!important;
       border-radius:1px!important;
-      resize:none!important;
-    }
+      /*resize:none!important;
+    */}
     a{
       color:white;
       text-decoration:none;
@@ -148,14 +173,16 @@
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-share"> </i></button>    
     
   </div>
-   <div class="form-group row mt-0 pt-0">
-     <label for="input"></label>
+   <div class="form-group row mt-0 pt-0" style="display:block!important;">
+     <label for="input" class="mb-0"><h4>STDIN</h4></label>
+     <p class="mt-0">(<b>Note:</b> If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.)</p>
     <!--<p>Note:Note:If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.</p>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <textarea class="form-control col-lg-4 col-sm-12" id="input" name="input_area" rows="1" placeholder="Input Goes Here...">{{input}}</textarea>
-
-    <label for="output"></label>
-    <textarea class="form-control col-lg-8 col-sm-12" id="output" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
+   
+    <textarea class="form-control col-lg-12 col-sm-12" id="input" name="input_area" rows="1" placeholder="Input Goes Here...">{{input}}</textarea>
+</div>
+<div class="form-group row mt-1 pt-0" style="display:block!important;">
+    <label for="output"><h4>STDOUT</h4></label>
+    <textarea class="form-control col-lg-12 col-sm-12" id="output" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
     
   </div>
  <div class="form-group mt-1 ml-0 text-center">
@@ -167,11 +194,10 @@
       mode:"python",
       lineNumbers:true
     });
-$("#runbtn").click(function() {
-    $('html,body').animate({
-        scrollTop: $("#output").offset().top},
-        'slow');
-});
+
+ $(window).load(function(){
+      $('.loader').fadeOut('slow')
+    })
   </script>  
 
 

@@ -61,14 +61,39 @@
 -->
 </head>
 <body>
-  
+  <div class="loader"></div>
+
   <style>
+
+    .loader {
+
+    position: fixed;
+
+    left: 0px;
+
+    top: 0px;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 9999;
+
+    background: url('https://bestpythontutorials.com/loader.gif') 50% 50% no-repeat white;
+
+}
+    /*.row{
+      display:block!important;
+    }*/
+    label,h1,h2,h3,h4,h5,h6{
+       font-family: 'Big Shoulders Stencil Text', cursive!important;
+    }
     textarea{
       box-shadow:none!important;
       outline:none!important;
       border:1px solid #737373!important;
       border-radius:1px!important;
-      resize:none!important;
+      
     }
     a{
       color:white;
@@ -88,6 +113,24 @@
   box-shadow:none;
   outline: none;
 }
+.row{
+  padding:0px;
+}
+.dark-mode i {
+  background-color: black;
+  color: white;
+}
+.dark-mode button {
+  color: white;
+}
+.dark-mode ~ CodeMirror{
+  background-color: black!important;
+}
+.dark-mode{
+  background-color: black;
+  color: white;
+}
+
 /*.newcolorbtn:hover{
   background-color:transparent;
   color:#04D2C8!important;
@@ -132,30 +175,35 @@
     </form>-->
   </div>
 </nav>
-<form class="pl-5 pr-5 pb-5 pt-1" action="/home/run" method="post">
+<form class="pl-4 pr-4 pb-5 pt-1" action="/home/run" method="post">
    {% csrf_token %}
   <div class="form-group mb-0">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <div class="form-group row">
     <label for="editor"></label>
     <textarea class="form-control col-lg-12" id="editor" rows="2" style="height:35vh;width:100%!important;" name="code_area" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{code}}</textarea>
+</div>
+<div class="form-group row" style="border:1px solid #737373;border-top:none;">
+  <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"><img src="{% static 'images/file-code.svg' %}" style="height:15px;width:18px;">main.py</button>
+  <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"><img src="{% static 'images/python.svg' %}" style="height:18px;width:18px;">Python 3</button>
  <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="submit" id="runbtn"><i class="fa fa-chevron-right"> </i>  Run</a></button>
 
-    <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-adjust"> </i></button>
+    <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button" onclick="mode()"> <i class="fa fa-adjust"> </i></button>
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-upload"> </i></button>
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-download"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-copy"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-share"> </i></button>    
     
   </div>
-   <div class="form-group row mt-0 pt-0">
-     <label for="input"></label>
-    <!--<p>Note:Note:If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.</p>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <textarea class="form-control col-lg-4 col-sm-12" id="input" name="input_area" rows="1" placeholder="Input Goes Here...">{{input}}</textarea>
-
-    <label for="output"></label>
-    <textarea class="form-control col-lg-8 col-sm-12" id="output" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
+   <div class="form-group row mt-0 pt-0" style="display:block!important;">
+     <label for="input"><h4 class="mt-3 mb-0">INPUT <img src="{% static 'images/keyboard.svg' %}" style="height:30px;width:30px;"></h4></label>
+   <p class="mt-0">(<b>Note:</b>If your program accepts inputs from a user, please enter inputs in the STDIN box below and then run your code.)</p>
+   
+    <textarea class="form-control col-lg-12 col-sm-12" id="input" name="input_area" rows="2" placeholder="Input Goes Here...">{{input}}</textarea>
+</div>
+<div class="form-group row mt-1 pt-0" style="display:block!important;">
+    <label for="output"><h4 class="mt-3">OUTPUT <i class="fa fa-desktop"></i></h4></label>
+    <textarea class="form-control col-lg-12 col-sm-12" id="output" rows="3" name="output_area" style="height:25vh;" readonly placeholder="Your output...">{{output}}</textarea>
     
   </div>
  <div class="form-group mt-1 ml-0 text-center">
@@ -167,11 +215,14 @@
       mode:"python",
       lineNumbers:true
     });
-$("#runbtn").click(function() {
-    $('html,body').animate({
-        scrollTop: $("#output").offset().top},
-        'slow');
-});
+
+ $(window).load(function(){
+      $('.loader').fadeOut('slow')
+    })
+ function mode() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
   </script>  
 
 
