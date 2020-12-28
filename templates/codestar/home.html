@@ -266,7 +266,8 @@ form{
 
    
      <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-upload"> </i></button>
-     <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-download"> </i></button>
+     <!--<input id="pile" placeholder="Your Python File Name">.py-->
+     <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button" onclick="savefile()"> <i class="fa fa-download"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-copy"> </i></button>
 <button class="btn newcolorbtn m-1" style="box-shadow:none!important;outline:none!important;border-radius:1px!important;" type="button"> <i class="fa fa-share"> </i></button>    
     <p>Theme: <select class="mt-3 mb-0" style="line-height:1.5;" onchange="selectTheme()" id=select>
@@ -357,8 +358,7 @@ form{
       mode:"python",
       lineNumbers:true,
        styleActiveLine: true,
-    matchBrackets: true,
-      theme:"base16-light"
+    matchBrackets: true
     });
   var input = document.getElementById("select");
   function selectTheme() {
@@ -383,6 +383,37 @@ form{
  function mode() {
    var element = document.body;
    element.classList.toggle("dark-mode");
+}
+
+
+
+
+function savefile() {
+  var textToWrite = editor.getValue();
+  var textFileAsBlob = new Blob([textToWrite], {
+    type: "text/plain;charset=utf-8"
+  });
+  /*
+  var fileNameToSaveAs = document.getElementById("pile").value + ".py";
+*/
+var fileNameToSaveAs = "main.py";
+  var downloadLink = document.createElement("a");
+  downloadLink.download = fileNameToSaveAs;
+  downloadLink.innerHTML = "Download File";
+  if (window.webkitURL != null) {
+    // Chrome allows the link to be clicked
+    // without actually adding it to the DOM.
+    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+  } else {
+    // Firefox requires the link to be added to the DOM
+    // before it can be clicked.
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+  }
+
+  downloadLink.click();
 }
   </script>  
 

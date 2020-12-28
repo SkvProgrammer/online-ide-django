@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import sys
-# Create your views here.
+
 def greetings(request):
     res = render(request,'codestar/home.html')
     return res
+
 def testing(request):
     res = render(request,'codestar/newhome.html')
     return res
