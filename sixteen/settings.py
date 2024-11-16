@@ -26,9 +26,9 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 SECRET_KEY = '+9fcl8#n4z!!^!0*6n3f*h&2c28()h*)9qn5v-c@05le-z79x8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','skvprogrammer.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','skvprogrammer.pythonanywhere.com','.vercel.com']
 
 
 # Application definition
