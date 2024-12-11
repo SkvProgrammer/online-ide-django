@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path, re_path
 from codestar import views
 
 urlpatterns = [
-	url(r'^$',views.greetings),
-	url(r'^testing$',views.testing),
-    url(r'^home/run$',views.runcode),
+    path('', views.greetings, name='greetings'),  # Simple path for the root URL
+    path('testing', views.testing, name='testing'),  # Simple path for 'testing'
+    re_path(r'^home/run$', views.runcode, name='run_code'),  # Regex-based pattern for 'home/run'
 ]

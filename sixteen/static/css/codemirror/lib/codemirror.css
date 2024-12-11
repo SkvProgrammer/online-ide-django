@@ -5,8 +5,22 @@
   width:100vw;
   font-size:20px;
   overflow:hidden;
-  border-radius:5px;
-}/* BASICS */
+   border:1px solid #737373!important;
+  border-radius:1px!important;
+}
+.dark-mode .CodeMirror{
+  background-color:rgb(40, 42, 54)!important;
+  color:white!important;
+}
+.dark-mode .CodeMirror-linenumbers{
+   background-color:rgb(40, 42, 54)!important;
+  color:white!important;
+  border:none!important;
+}
+.dark-mode .CodeMirror-gutters{
+  border-color: #737373;
+}
+/* BASICS */
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
@@ -46,7 +60,7 @@
 .CodeMirror-linenumbers {}
 .CodeMirror-linenumber {
   padding: 0 3px 0 5px;
-  min-width: 20px;
+  min-width: 10px;
   text-align: right;
   color: #999;
   white-space: nowrap;
